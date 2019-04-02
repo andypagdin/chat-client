@@ -9,11 +9,11 @@ app.get('/', (req, res) => {
 })
 
 io.on('connection', (socket) => {
-  io.emit('connect')
+  io.emit('establish connection')
 
-  socket.on('join', (name) => {
+  socket.on('connect', (name) => {
     socket.nickname = name
-    io.emit('user connect', name)
+    io.emit('join', name)
   })
 
   socket.on('chat message', (msg) => {
@@ -21,7 +21,7 @@ io.on('connection', (socket) => {
   })
 
   socket.on('disconnect', () => {
-    io.emit('user disconnect', socket.nickname)
+    io.emit('leave', socket.nickname)
   })
 
   socket.on('user is typing', () => {

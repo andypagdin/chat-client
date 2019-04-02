@@ -45,16 +45,16 @@
           $('#messages').append($('<li>').text(msg));
         })
 
-        socket.on('connect', () => {
+        socket.on('establish connection', () => {
           let nickname = window.prompt('Enter a nickname', 'Anon')
-          socket.emit('join', nickname)
+          socket.emit('connect', nickname)
         })
 
-        socket.on('user connect', (name) => {
+        socket.on('join', (name) => {
           $('#messages').append($('<li>').text(`${name} just connected`))
         })
 
-        socket.on('user disconnect', (name) => {
+        socket.on('leave', (name) => {
           $('#messages').append($('<li>').text(`${name} just disconnected`))
         })
         
