@@ -34,6 +34,19 @@
         socket.on('chat message', (msg) => {
           $('#messages').append($('<li>').text(msg));
         })
+
+        socket.on('connect', () => {
+          let nickname = window.prompt('Enter a nickname', 'Anon')
+          socket.emit('join', nickname)
+        })
+
+        socket.on('user connect', (name) => {
+          $('#messages').append($('<li>').text(`${name} just connected`))
+        })
+
+        socket.on('user disconnect', (name) => {
+          $('#messages').append($('<li>').text(`${name} just disconnected`))
+        })
       });
     </script>
   </body>
