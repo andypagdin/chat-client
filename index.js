@@ -23,6 +23,14 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     io.emit('user disconnect', socket.nickname)
   })
+
+  socket.on('user is typing', () => {
+    socket.broadcast.emit('typing user', socket.nickname)
+  })
+
+  socket.on('user cancelled typing', () => {
+    socket.broadcast.emit('typing user cancelled', socket.nickname)
+  })
 })
 
 http.listen(port, () => {
