@@ -47,7 +47,7 @@
 
         socket.on('establish connection', () => {
           let nickname = window.prompt('Enter a nickname', 'Anon')
-          socket.emit('connect', nickname)
+          socket.emit('connect user', nickname)
         })
 
         socket.on('join', (name) => {

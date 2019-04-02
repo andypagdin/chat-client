@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
 io.on('connection', (socket) => {
   io.emit('establish connection')
 
-  socket.on('connect', (name) => {
+  socket.on('connect user', (name) => {
     socket.nickname = name
     io.emit('join', name)
   })
